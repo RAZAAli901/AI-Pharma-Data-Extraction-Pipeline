@@ -1,0 +1,23 @@
+# AI Pharma Data Extraction Pipeline — Dependencies
+
+# Core
+anthropic>=0.42.0
+python-pptx>=1.0.0
+pyairtable>=2.3.0
+
+# Data Validation
+pydantic>=2.10.0
+pydantic-settings>=2.7.0
+
+# Configuration
+python-dotenv>=1.0.0
+
+# Utilities
+tenacity>=9.0.0
+rich>=13.9.0
+click>=8.1.0
+Pillow>=11.0.0
+
+# Testing
+pytest>=8.0.0
+pytest-mock>=3.14.0

@@ -1,0 +1,318 @@
+{
+    "started_at": "2025-06-15T09:00:00Z",
+    "completed_at": "2025-06-15T09:12:34Z",
+    "files_discovered": 3,
+    "files_processed": 3,
+    "files_failed": 0,
+    "total_records_extracted": 8,
+    "total_records_validated": 7,
+    "total_records_written": 7,
+    "records": [
+        {
+            "source_file": "Oncology_Pipeline_Review_Q2.pptx",
+            "slide_range": "3-8",
+            "extraction_timestamp": "2025-06-15T09:02:14Z",
+            "record_type": "Drug Asset",
+            "confidence_score": 0.94,
+            "drug_asset": {
+                "molecule_name": "Pembrolizumab",
+                "mechanism_of_action": "PD-1 inhibitor",
+                "drug_class": "Monoclonal antibody",
+                "sponsor_company": "Merck",
+                "therapy_area": "Oncology",
+                "indication": "Non-Small Cell Lung Cancer (NSCLC)",
+                "route_of_administration": "IV"
+            },
+            "clinical_insight": {
+                "trial_phase": "Phase III",
+                "trial_status": "Active, Not Recruiting",
+                "trial_identifier": "NCT02578680",
+                "primary_endpoints": ["Overall Survival (OS)", "Progression-Free Survival (PFS)"],
+                "secondary_endpoints": ["Objective Response Rate (ORR)", "Duration of Response (DoR)"],
+                "patient_population": "Treatment-naive Stage IV NSCLC with PD-L1 TPS ≥50%",
+                "enrollment_target": 1274,
+                "efficacy_data": "Median OS 26.3 months vs 16.7 months (HR 0.62, p<0.001)",
+                "safety_signals": "Immune-related AEs in 28% of patients; Grade 3-4 in 13%"
+            },
+            "competitive_intel": {
+                "competitive_positioning": "Best-in-class PD-1 inhibitor with broadest label in NSCLC",
+                "market_landscape": "Highly competitive IO landscape with 5+ approved agents",
+                "key_differentiators": [
+                    "Broadest indication coverage",
+                    "First-line monotherapy and combination approvals",
+                    "Strongest long-term OS data"
+                ],
+                "competitors": ["Nivolumab (BMS)", "Atezolizumab (Roche)", "Cemiplimab (Regeneron)"],
+                "market_size_estimate": "$25B global IO market in NSCLC"
+            },
+            "regulatory_update": {
+                "approval_status": "Approved",
+                "regulatory_authority": "FDA",
+                "submission_date": "2024-03-15",
+                "approval_date": "2024-09-22",
+                "designations": ["Breakthrough Therapy", "Priority Review"],
+                "pdufa_date": null
+            },
+            "key_takeaways": [
+                "Pembrolizumab maintains best-in-class OS in first-line NSCLC",
+                "Broadest IO label creates significant competitive moat",
+                "Combination regimens expanding into earlier-stage settings",
+                "Patent cliff in 2028 creates biosimilar opportunity"
+            ],
+            "raw_summary": "Pembrolizumab (Keytruda) continues to demonstrate superior overall survival in first-line NSCLC with PD-L1 expression ≥50%. The KEYNOTE-024 long-term data shows median OS of 26.3 months, significantly outperforming chemotherapy. Merck's strategy of expanding into combination regimens and earlier-stage disease further strengthens its market position."
+        },
+        {
+            "source_file": "Oncology_Pipeline_Review_Q2.pptx",
+            "slide_range": "9-14",
+            "extraction_timestamp": "2025-06-15T09:03:45Z",
+            "record_type": "Drug Asset",
+            "confidence_score": 0.88,
+            "drug_asset": {
+                "molecule_name": "Sotorasib",
+                "mechanism_of_action": "KRAS G12C inhibitor",
+                "drug_class": "Small molecule",
+                "sponsor_company": "Amgen",
+                "therapy_area": "Oncology",
+                "indication": "KRAS G12C-mutated NSCLC",
+                "route_of_administration": "Oral"
+            },
+            "clinical_insight": {
+                "trial_phase": "Phase III",
+                "trial_status": "Completed",
+                "trial_identifier": "NCT04303780",
+                "primary_endpoints": ["Progression-Free Survival (PFS)"],
+                "secondary_endpoints": ["Overall Survival (OS)", "ORR"],
+                "patient_population": "Previously treated KRAS G12C-mutant NSCLC",
+                "enrollment_target": 345,
+                "efficacy_data": "PFS 5.6 months vs 4.5 months (HR 0.66, p=0.002)",
+                "safety_signals": "Hepatotoxicity observed; liver function monitoring required"
+            },
+            "competitive_intel": {
+                "competitive_positioning": "First-to-market KRAS G12C inhibitor facing competition from adagrasib",
+                "market_landscape": "Emerging target with growing pipeline",
+                "key_differentiators": [
+                    "First FDA-approved KRAS G12C inhibitor",
+                    "Oral once-daily dosing"
+                ],
+                "competitors": ["Adagrasib (Mirati/BMS)"],
+                "market_size_estimate": "$2-3B addressable KRAS G12C market"
+            },
+            "regulatory_update": null,
+            "key_takeaways": [
+                "First-mover advantage in KRAS G12C space",
+                "Modest PFS benefit raises differentiation questions vs adagrasib",
+                "Combination strategies are key to expanding utility",
+                "Hepatotoxicity signals require careful monitoring"
+            ],
+            "raw_summary": "Sotorasib (Lumakras) was the first KRAS G12C inhibitor to receive FDA approval, establishing Amgen's first-mover advantage in this emerging precision oncology segment. While the CodeBreaK 200 Phase III data showed statistically significant PFS improvement, the absolute benefit was modest, raising competitive questions as adagrasib enters the market."
+        },
+        {
+            "source_file": "Immunology_Landscape_2025.pptx",
+            "slide_range": "1-6",
+            "extraction_timestamp": "2025-06-15T09:05:12Z",
+            "record_type": "Drug Asset",
+            "confidence_score": 0.91,
+            "drug_asset": {
+                "molecule_name": "Dupilumab",
+                "mechanism_of_action": "IL-4/IL-13 receptor antagonist",
+                "drug_class": "Monoclonal antibody",
+                "sponsor_company": "Sanofi / Regeneron",
+                "therapy_area": "Immunology",
+                "indication": "Atopic Dermatitis",
+                "route_of_administration": "Subcutaneous"
+            },
+            "clinical_insight": {
+                "trial_phase": "Phase IV",
+                "trial_status": "Recruiting",
+                "primary_endpoints": ["EASI-75 response rate"],
+                "secondary_endpoints": ["IGA 0/1 response", "Pruritus NRS"],
+                "patient_population": "Adults and adolescents with moderate-to-severe AD",
+                "enrollment_target": 800,
+                "efficacy_data": null,
+                "safety_signals": null
+            },
+            "competitive_intel": {
+                "competitive_positioning": "Market leader in Type 2 inflammation",
+                "market_landscape": "Rapidly evolving with JAK inhibitors and new biologics",
+                "key_differentiators": [
+                    "Broadest label across Type 2 inflammatory conditions",
+                    "6+ years of safety data",
+                    "Pediatric approvals down to 6 months"
+                ],
+                "competitors": ["Tralokinumab (LEO Pharma)", "Abrocitinib (Pfizer)", "Upadacitinib (AbbVie)"],
+                "market_size_estimate": "$15B global atopic dermatitis market by 2028"
+            },
+            "regulatory_update": {
+                "approval_status": "Approved",
+                "regulatory_authority": "FDA",
+                "designations": ["Breakthrough Therapy"],
+                "submission_date": null,
+                "approval_date": "2017-03-28",
+                "pdufa_date": null
+            },
+            "key_takeaways": [
+                "Dupilumab dominates Type 2 inflammation with $12B+ annual revenue",
+                "JAK inhibitor competition creates pricing pressure",
+                "Pediatric label expansion provides growth runway",
+                "Real-world evidence program strengthens payer positioning"
+            ],
+            "raw_summary": "Dupilumab (Dupixent) remains the dominant biologic in atopic dermatitis with $12B+ in annual revenue. Sanofi/Regeneron continue to expand its label across Type 2 inflammatory conditions including asthma, CRSwNP, and eosinophilic esophagitis, creating a significant competitive moat despite emerging JAK inhibitor competition."
+        },
+        {
+            "source_file": "Immunology_Landscape_2025.pptx",
+            "slide_range": "15-20",
+            "extraction_timestamp": "2025-06-15T09:06:30Z",
+            "record_type": "Competitive Intelligence",
+            "confidence_score": 0.82,
+            "drug_asset": null,
+            "clinical_insight": null,
+            "competitive_intel": {
+                "competitive_positioning": null,
+                "market_landscape": "The JAK inhibitor class faces a complex safety-efficacy tradeoff. While oral convenience drives adoption, boxed warnings on cardiovascular and thrombotic risks limit penetration in moderate disease.",
+                "key_differentiators": [],
+                "competitors": ["Upadacitinib (AbbVie)", "Baricitinib (Lilly)", "Abrocitinib (Pfizer)", "Ruxolitinib cream (Incyte)"],
+                "market_size_estimate": "$8B global JAK inhibitor market across indications",
+                "strategic_implications": "Biologics with cleaner safety profiles will continue dominating moderate-to-severe segments. JAK inhibitors are best positioned for biologic-inadequate responders and patients preferring oral therapy."
+            },
+            "regulatory_update": null,
+            "key_takeaways": [
+                "JAK class carries boxed cardiovascular and thrombotic risk warnings",
+                "Oral convenience drives adoption despite safety signals",
+                "Positioning shift toward biologic-inadequate responders",
+                "Topical JAK inhibitors (ruxolitinib cream) carve niche in mild-moderate disease"
+            ],
+            "raw_summary": "The competitive landscape analysis reveals that JAK inhibitors face significant headwinds from safety concerns, particularly the boxed warnings stemming from post-marketing studies. While oral convenience remains a differentiator, positioning is shifting toward biologic-experienced patients rather than first-line use."
+        },
+        {
+            "source_file": "Rare_Disease_Regulatory_Update.pptx",
+            "slide_range": "2-7",
+            "extraction_timestamp": "2025-06-15T09:08:15Z",
+            "record_type": "Regulatory Update",
+            "confidence_score": 0.96,
+            "drug_asset": {
+                "molecule_name": "Voxelotor",
+                "mechanism_of_action": "Hemoglobin S polymerization inhibitor",
+                "drug_class": "Small molecule",
+                "sponsor_company": "Pfizer (acquired from Global Blood Therapeutics)",
+                "therapy_area": "Hematology / Rare Disease",
+                "indication": "Sickle Cell Disease",
+                "route_of_administration": "Oral"
+            },
+            "clinical_insight": null,
+            "competitive_intel": null,
+            "regulatory_update": {
+                "approval_status": "Under Review — Voluntary Withdrawal",
+                "regulatory_authority": "FDA",
+                "submission_date": "2024-11-01",
+                "approval_date": null,
+                "designations": ["Orphan Drug", "Breakthrough Therapy", "Priority Review"],
+                "pdufa_date": "2025-09-15"
+            },
+            "key_takeaways": [
+                "Voluntary withdrawal of accelerated approval following confirmatory trial failure",
+                "HOPE study did not meet primary endpoint of VOC reduction",
+                "Significant commercial implications — $195M revenue at risk",
+                "Highlights regulatory risk of accelerated approval pathway",
+                "Gene therapy advances may reshape SCD treatment paradigm"
+            ],
+            "raw_summary": "Pfizer announced the voluntary withdrawal of voxelotor (Oxbryta) from the US market following the HOPE confirmatory trial's failure to demonstrate reduction in vaso-occlusive crises. This follows the accelerated approval pathway and represents a significant regulatory and commercial setback in the sickle cell disease space."
+        },
+        {
+            "source_file": "Rare_Disease_Regulatory_Update.pptx",
+            "slide_range": "8-12",
+            "extraction_timestamp": "2025-06-15T09:09:45Z",
+            "record_type": "Drug Asset",
+            "confidence_score": 0.89,
+            "drug_asset": {
+                "molecule_name": "Casgevy (exagamglogene autotemcel)",
+                "mechanism_of_action": "CRISPR-Cas9 gene editing",
+                "drug_class": "Gene therapy",
+                "sponsor_company": "Vertex / CRISPR Therapeutics",
+                "therapy_area": "Hematology / Rare Disease",
+                "indication": "Sickle Cell Disease / Transfusion-Dependent Beta-Thalassemia",
+                "route_of_administration": "IV (autologous cell therapy)"
+            },
+            "clinical_insight": {
+                "trial_phase": "Phase III",
+                "trial_status": "Active, Not Recruiting",
+                "trial_identifier": "NCT03655678",
+                "primary_endpoints": ["Freedom from VOC for ≥12 consecutive months"],
+                "secondary_endpoints": ["Hemoglobin levels", "Time to engraftment"],
+                "patient_population": "SCD patients aged 12-35 with recurrent VOCs",
+                "enrollment_target": 45,
+                "efficacy_data": "97% of evaluable SCD patients VOC-free at 12 months",
+                "safety_signals": "Myeloablative conditioning required; long-term surveillance ongoing"
+            },
+            "competitive_intel": {
+                "competitive_positioning": "First CRISPR-based therapy approved globally",
+                "key_differentiators": ["One-time curative potential", "Functional cure demonstrated"],
+                "competitors": ["Lyfgenia / lovotibeglogene (bluebird bio)"],
+                "market_size_estimate": "$3-5B addressable SCD gene therapy market"
+            },
+            "regulatory_update": {
+                "approval_status": "Approved",
+                "regulatory_authority": "FDA",
+                "designations": ["Orphan Drug", "Regenerative Medicine Advanced Therapy (RMAT)"],
+                "approval_date": "2023-12-08",
+                "submission_date": null,
+                "pdufa_date": null
+            },
+            "key_takeaways": [
+                "First CRISPR therapy approved — landmark regulatory milestone",
+                "97% VOC-free rate represents functional cure for SCD",
+                "Access challenges: $2.2M list price and complex delivery logistics",
+                "Myeloablative conditioning remains a barrier to broad adoption"
+            ],
+            "raw_summary": "Casgevy represents a paradigm shift as the first CRISPR-based gene therapy approved by the FDA. The 97% VOC-free rate in SCD patients demonstrates functional cure potential, though the $2.2M price tag and requirement for myeloablative conditioning present significant access and delivery challenges."
+        },
+        {
+            "source_file": "Immunology_Landscape_2025.pptx",
+            "slide_range": "22-28",
+            "extraction_timestamp": "2025-06-15T09:11:00Z",
+            "record_type": "Market Analysis",
+            "confidence_score": 0.77,
+            "drug_asset": null,
+            "clinical_insight": null,
+            "competitive_intel": {
+                "competitive_positioning": null,
+                "market_landscape": "The global autoimmune disease therapeutics market is projected to reach $150B by 2030, driven by biologic uptake, emerging targeted therapies, and expanding indications.",
+                "key_differentiators": [],
+                "competitors": [],
+                "market_size_estimate": "$150B by 2030 (12% CAGR)",
+                "strategic_implications": "Companies with multi-indication biologic platforms (IL-23, IL-4/13, JAK) are best positioned. Biosimilar erosion of TNF-α franchise creates headwinds for incumbents but opens market share for next-gen mechanisms."
+            },
+            "regulatory_update": null,
+            "key_takeaways": [
+                "Autoimmune market projected at $150B by 2030",
+                "IL-23 inhibitors emerging as preferred class in psoriasis and IBD",
+                "TNF-α biosimilar wave creating pricing pressure",
+                "Payer focus shifting toward value-based and outcomes-driven contracting"
+            ],
+            "raw_summary": "The autoimmune therapeutics market analysis projects robust growth to $150B by 2030, driven primarily by next-generation biologics targeting IL-23, IL-4/IL-13, and emerging cell therapies. However, significant biosimilar competition in the TNF-α class is creating pricing pressure, and payers are increasingly demanding value-based contracting models."
+        }
+    ],
+    "file_results": [
+        {
+            "file_name": "Oncology_Pipeline_Review_Q2.pptx",
+            "status": "completed",
+            "records_extracted": 3,
+            "records_validated": 2,
+            "records_written": 2
+        },
+        {
+            "file_name": "Immunology_Landscape_2025.pptx",
+            "status": "completed",
+            "records_extracted": 3,
+            "records_validated": 3,
+            "records_written": 3
+        },
+        {
+            "file_name": "Rare_Disease_Regulatory_Update.pptx",
+            "status": "completed",
+            "records_extracted": 2,
+            "records_validated": 2,
+            "records_written": 2
+        }
+    ],
+    "errors": []
+}
