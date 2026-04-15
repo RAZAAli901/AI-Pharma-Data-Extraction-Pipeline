@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AI-powered pharmaceutical data extraction pipeline dashboard — view extracted insights, drug assets, and competitive intelligence.">
-    <title>PharmaPipeline — Extraction Dashboard</title>
+    <meta name="description" content="AI-powered pharmaceutical data extraction pipeline — chat with AI, extract from web, or enter data manually.">
+    <title>PharmaPipeline — AI Extraction Dashboard</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,177 +18,357 @@
 </head>
 <body>
 
-    <!-- ── Ambient Gradient Background ──────────────────────────── -->
+    <!-- ── Ambient Background ──────────────────────────── -->
     <div class="ambient-bg">
         <div class="gradient-orb orb-1"></div>
         <div class="gradient-orb orb-2"></div>
         <div class="gradient-orb orb-3"></div>
     </div>
 
-    <!-- ── Navigation ───────────────────────────────────────────── -->
-    <nav class="nav-bar" id="navbar">
-        <div class="nav-brand">
-            <span class="nav-icon">🧬</span>
-            <span class="nav-title">PharmaPipeline</span>
-            <span class="nav-badge">AI</span>
-        </div>
-        <div class="nav-actions">
-            <button class="btn btn-ghost" id="btn-refresh" title="Refresh Data">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
-                <span>Refresh</span>
-            </button>
-            <button class="btn btn-ghost" id="btn-export" title="Export Data">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                <span>Export</span>
-            </button>
-            <button class="btn btn-primary" id="btn-load-json" title="Load Data">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                <span>Load JSON</span>
-            </button>
-            <input type="file" id="file-input" accept=".json" style="display:none">
-        </div>
-    </nav>
+    <div class="app-layout">
 
-    <!-- ── Main Content ─────────────────────────────────────────── -->
-    <main class="main-content">
+        <!-- ══════════════════════════════════════════════
+             SIDEBAR
+             ══════════════════════════════════════════════ -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <span class="sidebar-brand-icon">🧬</span>
+                <div class="sidebar-brand-text">
+                    <span class="sidebar-brand-title">PharmaPipeline</span>
+                    <span class="sidebar-brand-sub">AI Extraction</span>
+                </div>
+            </div>
 
-        <!-- Status Bar -->
-        <section class="status-bar" id="status-bar">
-            <div class="status-item">
-                <span class="status-dot status-dot--active"></span>
-                <span id="status-text">Ready — load data to begin</span>
-            </div>
-            <div class="status-item">
-                <span class="status-label">Last Updated:</span>
-                <span id="last-updated">—</span>
-            </div>
-        </section>
+            <nav class="sidebar-nav">
+                <div class="sidebar-section-label">Main</div>
+                <div class="sidebar-item active" data-view="chat" id="nav-chat">
+                    <span class="sidebar-item-icon">💬</span>
+                    <span class="sidebar-item-label">Chat</span>
+                </div>
+                <div class="sidebar-item" data-view="dashboard" id="nav-dashboard">
+                    <span class="sidebar-item-icon">📊</span>
+                    <span class="sidebar-item-label">Dashboard</span>
+                </div>
+                <div class="sidebar-item" data-view="analytics" id="nav-analytics">
+                    <span class="sidebar-item-icon">📈</span>
+                    <span class="sidebar-item-label">Analytics</span>
+                </div>
 
-        <!-- KPI Cards -->
-        <section class="kpi-grid" id="kpi-section">
-            <div class="kpi-card" id="kpi-files">
-                <div class="kpi-icon">📁</div>
-                <div class="kpi-data">
-                    <span class="kpi-value" id="kpi-files-value">0</span>
-                    <span class="kpi-label">Files Processed</span>
+                <div class="sidebar-section-label">Data</div>
+                <div class="sidebar-item" data-view="drugs" id="nav-drugs">
+                    <span class="sidebar-item-icon">🧪</span>
+                    <span class="sidebar-item-label">Drug Assets</span>
+                    <span class="sidebar-item-badge" id="drug-count-badge">0</span>
                 </div>
-            </div>
-            <div class="kpi-card" id="kpi-records">
-                <div class="kpi-icon">📋</div>
-                <div class="kpi-data">
-                    <span class="kpi-value" id="kpi-records-value">0</span>
-                    <span class="kpi-label">Records Extracted</span>
+                <div class="sidebar-item" data-view="records" id="nav-records">
+                    <span class="sidebar-item-icon">📋</span>
+                    <span class="sidebar-item-label">Records</span>
+                    <span class="sidebar-item-badge" id="record-count-badge">0</span>
                 </div>
-            </div>
-            <div class="kpi-card" id="kpi-validated">
-                <div class="kpi-icon">✅</div>
-                <div class="kpi-data">
-                    <span class="kpi-value" id="kpi-validated-value">0</span>
-                    <span class="kpi-label">Records Validated</span>
+                <div class="sidebar-item" data-view="runs" id="nav-runs">
+                    <span class="sidebar-item-icon">🕐</span>
+                    <span class="sidebar-item-label">Pipeline Runs</span>
                 </div>
-            </div>
-            <div class="kpi-card" id="kpi-confidence">
-                <div class="kpi-icon">🎯</div>
-                <div class="kpi-data">
-                    <span class="kpi-value" id="kpi-confidence-value">—</span>
-                    <span class="kpi-label">Avg Confidence</span>
-                </div>
-            </div>
-        </section>
 
-        <!-- Charts Row -->
-        <section class="charts-grid">
-            <div class="chart-card" id="chart-card-type">
-                <h3 class="chart-title">Record Types</h3>
-                <div class="chart-container">
-                    <canvas id="chart-record-types"></canvas>
+                <div class="sidebar-section-label">Input</div>
+                <div class="sidebar-item" data-view="input" id="nav-input">
+                    <span class="sidebar-item-icon">⚡</span>
+                    <span class="sidebar-item-label">Add Data</span>
                 </div>
-            </div>
-            <div class="chart-card" id="chart-card-therapy">
-                <h3 class="chart-title">Therapy Areas</h3>
-                <div class="chart-container">
-                    <canvas id="chart-therapy-areas"></canvas>
-                </div>
-            </div>
-            <div class="chart-card" id="chart-card-confidence">
-                <h3 class="chart-title">Confidence Distribution</h3>
-                <div class="chart-container">
-                    <canvas id="chart-confidence"></canvas>
-                </div>
-            </div>
-        </section>
+            </nav>
 
-        <!-- Drug Asset Cards -->
-        <section class="drug-section" id="drug-section">
-            <div class="section-header">
-                <h2 class="section-title">🧪 Drug Assets & Competitive Landscape</h2>
-                <div class="section-actions">
-                    <input type="text" class="search-input" id="drug-search" placeholder="Search molecules...">
-                </div>
+            <div class="sidebar-footer">
+                <button class="sidebar-footer-btn" id="btn-export">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Export All Data
+                </button>
             </div>
-            <div class="drug-grid" id="drug-grid">
-                <div class="empty-state" id="drug-empty">
-                    <div class="empty-icon">🧪</div>
-                    <p>No drug asset data loaded</p>
-                    <span>Load a pipeline report JSON to see extracted drug assets</span>
-                </div>
-            </div>
-        </section>
+        </aside>
 
-        <!-- Records Table -->
-        <section class="table-section" id="table-section">
-            <div class="section-header">
-                <h2 class="section-title">📊 Extracted Records</h2>
-                <div class="section-actions">
-                    <input type="text" class="search-input" id="table-search" placeholder="Filter records...">
-                    <select class="filter-select" id="type-filter">
-                        <option value="">All Types</option>
-                    </select>
+        <!-- ══════════════════════════════════════════════
+             MAIN AREA
+             ══════════════════════════════════════════════ -->
+        <div class="main-area">
+
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="top-bar-title">
+                    <span class="top-bar-title-icon" id="topbar-icon">💬</span>
+                    <span id="topbar-label">Chat</span>
+                </div>
+                <div class="top-bar-actions">
+                    <button class="btn btn-ghost btn-sm" id="btn-load-json">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Load JSON
+                    </button>
+                    <button class="btn btn-ghost btn-sm" id="btn-refresh">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
+                        Refresh
+                    </button>
+                    <input type="file" id="file-input" accept=".json" style="display:none">
                 </div>
             </div>
-            <div class="table-container">
-                <table class="data-table" id="records-table">
-                    <thead>
-                        <tr>
-                            <th data-sort="source_file">Source File</th>
-                            <th data-sort="record_type">Type</th>
-                            <th data-sort="molecule_name">Molecule</th>
-                            <th data-sort="therapy_area">Therapy Area</th>
-                            <th data-sort="confidence_score">Confidence</th>
-                            <th data-sort="slide_range">Slides</th>
-                            <th>Summary</th>
-                        </tr>
-                    </thead>
-                    <tbody id="records-tbody">
-                        <tr class="empty-row">
-                            <td colspan="7">
-                                <div class="empty-state">
-                                    <div class="empty-icon">📊</div>
-                                    <p>No records to display</p>
+
+            <!-- View Container -->
+            <div class="view-container" id="view-container">
+
+                <!-- ─── VIEW: Chat ─────────────────────────── -->
+                <div class="view active" id="view-chat">
+                    <div class="chat-view-content" style="height:100%;">
+                        <div class="chat-messages" id="chat-messages">
+                            <!-- Populated by JS on init -->
+                        </div>
+                        <div class="chat-input-area">
+                            <div class="chat-input-bar">
+                                <input type="text" class="chat-input-field" id="chat-input" placeholder="Ask me anything about PharmaPipeline…">
+                                <button class="chat-send-btn" id="chat-send-btn">✨</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ─── VIEW: Dashboard ────────────────────── -->
+                <div class="view" id="view-dashboard">
+                    <div class="view-content">
+                        <section class="status-bar" id="status-bar">
+                            <div class="status-item">
+                                <span class="status-dot status-dot--active"></span>
+                                <span id="status-text">Ready — load data or enter manually</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Last Updated:</span>
+                                <span id="last-updated">—</span>
+                            </div>
+                        </section>
+
+                        <section class="kpi-grid" id="kpi-section">
+                            <div class="kpi-card"><div class="kpi-icon">📁</div><div class="kpi-data"><span class="kpi-value" id="kpi-files-value">0</span><span class="kpi-label">Files Processed</span></div></div>
+                            <div class="kpi-card"><div class="kpi-icon">📋</div><div class="kpi-data"><span class="kpi-value" id="kpi-records-value">0</span><span class="kpi-label">Records Extracted</span></div></div>
+                            <div class="kpi-card"><div class="kpi-icon">✅</div><div class="kpi-data"><span class="kpi-value" id="kpi-validated-value">0</span><span class="kpi-label">Records Validated</span></div></div>
+                            <div class="kpi-card"><div class="kpi-icon">🎯</div><div class="kpi-data"><span class="kpi-value" id="kpi-confidence-value">—</span><span class="kpi-label">Avg Confidence</span></div></div>
+                        </section>
+
+                        <div class="section-header"><h2 class="section-title">🕐 Recent Pipeline Runs</h2></div>
+                        <div class="runs-list" id="runs-list">
+                            <div class="empty-state"><div class="empty-icon">🕐</div><p>No pipeline runs loaded</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ─── VIEW: Analytics ────────────────────── -->
+                <div class="view" id="view-analytics">
+                    <div class="view-content">
+                        <div class="section-header"><h2 class="section-title">📈 Analytics & Charts</h2></div>
+                        <div class="charts-grid">
+                            <div class="chart-card"><h3 class="chart-title">Record Types</h3><div class="chart-container"><canvas id="chart-record-types"></canvas></div></div>
+                            <div class="chart-card"><h3 class="chart-title">Therapy Areas</h3><div class="chart-container"><canvas id="chart-therapy-areas"></canvas></div></div>
+                            <div class="chart-card full-width"><h3 class="chart-title">Confidence Distribution</h3><div class="chart-container"><canvas id="chart-confidence"></canvas></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ─── VIEW: Drug Assets ──────────────────── -->
+                <div class="view" id="view-drugs">
+                    <div class="view-content">
+                        <div class="section-header">
+                            <h2 class="section-title">🧪 Drug Assets & Competitive Landscape</h2>
+                            <div class="section-actions">
+                                <input type="text" class="search-input" id="drug-search" placeholder="Search molecules...">
+                            </div>
+                        </div>
+                        <div class="drug-grid" id="drug-grid">
+                            <div class="empty-state"><div class="empty-icon">🧪</div><p>No drug asset data loaded</p><span>Extract from the web or add records manually</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ─── VIEW: Records ──────────────────────── -->
+                <div class="view" id="view-records">
+                    <div class="view-content">
+                        <div class="section-header">
+                            <h2 class="section-title">📋 Extracted Records</h2>
+                            <div class="section-actions">
+                                <input type="text" class="search-input" id="table-search" placeholder="Filter records...">
+                                <select class="filter-select" id="type-filter"><option value="">All Types</option></select>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table" id="records-table">
+                                <thead>
+                                    <tr>
+                                        <th data-sort="source_file">Source</th>
+                                        <th data-sort="record_type">Type</th>
+                                        <th data-sort="molecule_name">Molecule</th>
+                                        <th data-sort="therapy_area">Therapy Area</th>
+                                        <th data-sort="confidence_score">Confidence</th>
+                                        <th data-sort="slide_range">Slides</th>
+                                        <th>Summary</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="records-tbody">
+                                    <tr class="empty-row"><td colspan="7"><div class="empty-state"><div class="empty-icon">📋</div><p>No records to display</p></div></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ─── VIEW: Pipeline Runs ────────────────── -->
+                <div class="view" id="view-runs">
+                    <div class="view-content">
+                        <div class="section-header"><h2 class="section-title">🕐 Pipeline Run History</h2></div>
+                        <div class="runs-list" id="runs-list-full">
+                            <div class="empty-state"><div class="empty-icon">🕐</div><p>No pipeline runs loaded</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ─── VIEW: Add Data (AI Extract + Manual) ── -->
+                <div class="view" id="view-input">
+                    <div class="view-content">
+                        <div class="mode-toggle-container">
+                            <div class="mode-toggle" id="mode-toggle">
+                                <button class="mode-toggle-btn active" id="mode-btn-extract" data-mode="extract">
+                                    <span class="mode-toggle-icon">🌐</span> AI Extract
+                                </button>
+                                <button class="mode-toggle-btn" id="mode-btn-manual" data-mode="manual">
+                                    <span class="mode-toggle-icon">✍️</span> Manual Entry
+                                </button>
+                                <div class="mode-toggle-slider" id="mode-slider"></div>
+                            </div>
+                        </div>
+
+                        <!-- AI Extract Sub-Panel -->
+                        <div id="extract-panel">
+                            <div class="extract-bar-wrapper">
+                                <div class="extract-bar">
+                                    <span class="extract-bar-icon">🔗</span>
+                                    <input type="text" class="extract-bar-field" id="extract-url-input" placeholder="Paste a URL to extract pharmaceutical data…">
+                                    <div class="extract-bar-actions">
+                                        <button class="extract-bar-btn extract-bar-btn--upload" id="btn-bar-upload" title="Upload file">📎</button>
+                                        <button class="extract-bar-btn extract-bar-btn--go" id="btn-bar-extract" title="Extract">✨</button>
+                                    </div>
                                 </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+                                <div class="extract-hint">Press Enter to extract · Supports pharma news URLs, clinical trial pages, FDA announcements</div>
+                            </div>
 
-        <!-- Pipeline Runs -->
-        <section class="runs-section" id="runs-section">
-            <div class="section-header">
-                <h2 class="section-title">🕐 Pipeline Run History</h2>
-            </div>
-            <div class="runs-list" id="runs-list">
-                <div class="empty-state">
-                    <div class="empty-icon">🕐</div>
-                    <p>No pipeline runs loaded</p>
+                            <div class="shimmer-container" id="shimmer-loading">
+                                <div class="shimmer-orb"></div>
+                                <div class="shimmer-text" id="shimmer-text">Extracting pharmaceutical data…</div>
+                                <div class="shimmer-bar"></div>
+                            </div>
+                        </div>
+
+                        <!-- Manual Entry Sub-Panel -->
+                        <div class="manual-entry-panel" id="manual-entry-panel">
+                            <!-- Record Info -->
+                            <div class="form-section open" id="form-source">
+                                <div class="form-section-header" onclick="toggleFormSection('form-source')">
+                                    <div class="form-section-title"><span class="section-icon">📋</span> Record Info & Source</div>
+                                    <span class="form-section-chevron">▼</span>
+                                </div>
+                                <div class="form-section-body"><div class="form-section-content">
+                                    <div class="form-group"><label class="form-label" for="manual-record-type">Record Type</label><select class="form-select" id="manual-record-type"><option value="Drug Asset">Drug Asset</option><option value="Clinical Insight">Clinical Insight</option><option value="Competitive Intelligence">Competitive Intelligence</option><option value="Regulatory Update">Regulatory Update</option><option value="Market Analysis">Market Analysis</option><option value="General Insight">General Insight</option></select></div>
+                                    <div class="form-group"><label class="form-label" for="manual-confidence">Confidence (0–1)</label><input class="form-input" type="number" id="manual-confidence" min="0" max="1" step="0.01" value="0.85"></div>
+                                    <div class="form-group"><label class="form-label" for="manual-source-file">Source File</label><input class="form-input" type="text" id="manual-source-file" placeholder="e.g. Oncology_Review.pptx"></div>
+                                    <div class="form-group"><label class="form-label" for="manual-slide-range">Slide Range</label><input class="form-input" type="text" id="manual-slide-range" placeholder="e.g. 3-8"></div>
+                                </div></div>
+                            </div>
+
+                            <!-- Drug Asset -->
+                            <div class="form-section open" id="form-drug-asset">
+                                <div class="form-section-header" onclick="toggleFormSection('form-drug-asset')">
+                                    <div class="form-section-title"><span class="section-icon">🧪</span> Drug Asset</div>
+                                    <span class="form-section-chevron">▼</span>
+                                </div>
+                                <div class="form-section-body"><div class="form-section-content">
+                                    <div class="form-group"><label class="form-label" for="manual-molecule">Molecule Name *</label><input class="form-input" type="text" id="manual-molecule" placeholder="e.g. Pembrolizumab"></div>
+                                    <div class="form-group"><label class="form-label" for="manual-sponsor">Sponsor Company</label><input class="form-input" type="text" id="manual-sponsor" placeholder="e.g. Merck"></div>
+                                    <div class="form-group"><label class="form-label" for="manual-moa">Mechanism of Action</label><input class="form-input" type="text" id="manual-moa" placeholder="e.g. PD-1 inhibitor"></div>
+                                    <div class="form-group"><label class="form-label" for="manual-drug-class">Drug Class</label><input class="form-input" type="text" id="manual-drug-class" placeholder="e.g. Monoclonal antibody"></div>
+                                    <div class="form-group"><label class="form-label" for="manual-therapy-area">Therapy Area</label><input class="form-input" type="text" id="manual-therapy-area" placeholder="e.g. Oncology"></div>
+                                    <div class="form-group"><label class="form-label" for="manual-indication">Indication</label><input class="form-input" type="text" id="manual-indication" placeholder="e.g. NSCLC"></div>
+                                    <div class="form-group"><label class="form-label" for="manual-route">Route</label><select class="form-select" id="manual-route"><option value="">— Select —</option><option value="IV">IV</option><option value="Oral">Oral</option><option value="Subcutaneous">Subcutaneous</option><option value="Intramuscular">Intramuscular</option><option value="Topical">Topical</option><option value="Inhaled">Inhaled</option><option value="Other">Other</option></select></div>
+                                </div></div>
+                            </div>
+
+                            <!-- Clinical Insight -->
+                            <div class="form-section" id="form-clinical">
+                                <div class="form-section-header" onclick="toggleFormSection('form-clinical')">
+                                    <div class="form-section-title"><span class="section-icon">🔬</span> Clinical Insight</div>
+                                    <span class="form-section-chevron">▼</span>
+                                </div>
+                                <div class="form-section-body"><div class="form-section-content">
+                                    <div class="form-group"><label class="form-label" for="manual-trial-phase">Trial Phase</label><select class="form-select" id="manual-trial-phase"><option value="">— Select —</option><option>Preclinical</option><option>Phase I</option><option>Phase I/II</option><option>Phase II</option><option>Phase II/III</option><option>Phase III</option><option>Phase IIIb</option><option>Phase IV</option></select></div>
+                                    <div class="form-group"><label class="form-label" for="manual-trial-status">Trial Status</label><select class="form-select" id="manual-trial-status"><option value="">— Select —</option><option>Not Yet Recruiting</option><option>Recruiting</option><option>Active, Not Recruiting</option><option>Completed</option><option>Suspended</option><option>Terminated</option><option>Withdrawn</option></select></div>
+                                    <div class="form-group"><label class="form-label" for="manual-trial-id">Trial ID</label><input class="form-input" type="text" id="manual-trial-id" placeholder="NCT02578680"></div>
+                                    <div class="form-group"><label class="form-label" for="manual-enrollment">Enrollment</label><input class="form-input" type="number" id="manual-enrollment" placeholder="1274"></div>
+                                    <div class="form-group"><label class="form-label" for="manual-population">Patient Population</label><input class="form-input" type="text" id="manual-population" placeholder="Target patient population"></div>
+                                    <div class="form-group"><label class="form-label">Primary Endpoints</label><div class="list-input-group" id="primary-endpoints-list"><div class="list-input-row"><input class="form-input" type="text" placeholder="e.g. Overall Survival"><button class="btn-add-item" onclick="addListItem('primary-endpoints-list')">+</button></div></div></div>
+                                    <div class="form-group full-width"><label class="form-label" for="manual-efficacy">Efficacy Data</label><textarea class="form-textarea" id="manual-efficacy" placeholder="Key efficacy results..."></textarea></div>
+                                    <div class="form-group full-width"><label class="form-label" for="manual-safety">Safety Signals</label><textarea class="form-textarea" id="manual-safety" placeholder="Notable safety observations..."></textarea></div>
+                                </div></div>
+                            </div>
+
+                            <!-- Competitive Intelligence -->
+                            <div class="form-section" id="form-competitive">
+                                <div class="form-section-header" onclick="toggleFormSection('form-competitive')">
+                                    <div class="form-section-title"><span class="section-icon">📊</span> Competitive Intelligence</div>
+                                    <span class="form-section-chevron">▼</span>
+                                </div>
+                                <div class="form-section-body"><div class="form-section-content">
+                                    <div class="form-group full-width"><label class="form-label" for="manual-positioning">Competitive Positioning</label><textarea class="form-textarea" id="manual-positioning" placeholder="How this asset is positioned..."></textarea></div>
+                                    <div class="form-group full-width"><label class="form-label" for="manual-landscape">Market Landscape</label><textarea class="form-textarea" id="manual-landscape" placeholder="Competitive market overview..."></textarea></div>
+                                    <div class="form-group"><label class="form-label" for="manual-market-size">Market Size</label><input class="form-input" type="text" id="manual-market-size" placeholder="$25B global market"></div>
+                                    <div class="form-group"><label class="form-label">Competitors</label><div class="list-input-group" id="competitors-list"><div class="list-input-row"><input class="form-input" type="text" placeholder="e.g. Nivolumab (BMS)"><button class="btn-add-item" onclick="addListItem('competitors-list')">+</button></div></div></div>
+                                    <div class="form-group full-width"><label class="form-label">Differentiators</label><div class="list-input-group" id="differentiators-list"><div class="list-input-row"><input class="form-input" type="text" placeholder="Key advantage"><button class="btn-add-item" onclick="addListItem('differentiators-list')">+</button></div></div></div>
+                                </div></div>
+                            </div>
+
+                            <!-- Regulatory -->
+                            <div class="form-section" id="form-regulatory">
+                                <div class="form-section-header" onclick="toggleFormSection('form-regulatory')">
+                                    <div class="form-section-title"><span class="section-icon">📜</span> Regulatory Update</div>
+                                    <span class="form-section-chevron">▼</span>
+                                </div>
+                                <div class="form-section-body"><div class="form-section-content">
+                                    <div class="form-group"><label class="form-label" for="manual-approval-status">Approval Status</label><input class="form-input" type="text" id="manual-approval-status" placeholder="Approved, Filed, Under Review"></div>
+                                    <div class="form-group"><label class="form-label" for="manual-reg-authority">Authority</label><select class="form-select" id="manual-reg-authority"><option value="">— Select —</option><option>FDA</option><option>EMA</option><option>PMDA</option><option>NMPA</option><option>MHRA</option><option>Health Canada</option><option>TGA</option><option>Other</option></select></div>
+                                    <div class="form-group"><label class="form-label" for="manual-submission-date">Submission Date</label><input class="form-input" type="date" id="manual-submission-date"></div>
+                                    <div class="form-group"><label class="form-label" for="manual-approval-date">Approval Date</label><input class="form-input" type="date" id="manual-approval-date"></div>
+                                    <div class="form-group"><label class="form-label" for="manual-pdufa">PDUFA Date</label><input class="form-input" type="date" id="manual-pdufa"></div>
+                                    <div class="form-group"><label class="form-label">Designations</label><div class="list-input-group" id="designations-list"><div class="list-input-row"><input class="form-input" type="text" placeholder="e.g. Breakthrough Therapy"><button class="btn-add-item" onclick="addListItem('designations-list')">+</button></div></div></div>
+                                </div></div>
+                            </div>
+
+                            <!-- Summary -->
+                            <div class="form-section open" id="form-summary">
+                                <div class="form-section-header" onclick="toggleFormSection('form-summary')">
+                                    <div class="form-section-title"><span class="section-icon">💡</span> Summary & Key Takeaways</div>
+                                    <span class="form-section-chevron">▼</span>
+                                </div>
+                                <div class="form-section-body"><div class="form-section-content">
+                                    <div class="form-group full-width"><label class="form-label" for="manual-summary">Summary *</label><textarea class="form-textarea" id="manual-summary" rows="4" placeholder="Free-text summary..."></textarea></div>
+                                    <div class="form-group full-width"><label class="form-label">Key Takeaways</label><div class="list-input-group" id="takeaways-list"><div class="list-input-row"><input class="form-input" type="text" placeholder="Key insight"><button class="btn-add-item" onclick="addListItem('takeaways-list')">+</button></div></div></div>
+                                </div></div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button class="btn btn-ghost" id="btn-clear-form">Clear</button>
+                                <button class="btn btn-primary" id="btn-submit-manual">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+                                    Add Record
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
 
-    </main>
+            </div><!-- /view-container -->
+        </div><!-- /main-area -->
+    </div><!-- /app-layout -->
 
-    <!-- ── Record Detail Modal ──────────────────────────────────── -->
+    <!-- ── Modal ──────────────────────────────────────── -->
     <div class="modal-overlay" id="record-modal">
         <div class="modal-content">
             <button class="modal-close" id="modal-close">&times;</button>
@@ -196,10 +376,14 @@
                 <h2 id="modal-title">Record Detail</h2>
                 <span class="modal-badge" id="modal-type-badge"></span>
             </div>
-            <div class="modal-body" id="modal-body">
-                <!-- Dynamically populated -->
-            </div>
+            <div class="modal-body" id="modal-body"></div>
         </div>
+    </div>
+
+    <!-- ── Toast ──────────────────────────────────────── -->
+    <div class="toast" id="toast">
+        <span id="toast-icon">✅</span>
+        <span id="toast-text">Done</span>
     </div>
 
     <script src="app.js"></script>
